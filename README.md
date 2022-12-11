@@ -62,6 +62,10 @@ The CarsXE API provides the following endpoint methods:
 
 `platedecoder`: This method allows you to decode a license plate number and get information about the vehicle it is registered to.
 
+`images`: This method allows you to get images for a specific vehicle, based on its a variety of parameters.
+
+`obdcodesdecoder`: This method allows you to decode an OBD code and get information about the code.
+
 To use any of these endpoint methods, call the method and provide the necessary parameters, as shown in the following examples:
 
 ```js
@@ -78,6 +82,12 @@ const history = carsxe.history({ vin });
 
 // Decode license plate number ABC123, state XX and country YY
 const platedecoder = carsxe.platedecoder({ plate: 'ABC123', state: 'XX', country: 'YY' });
+
+// Get images
+const images = carsxe.images({ make: 'BMW', model: 'X5', year: '2019' });
+
+// Get Decode OBD Code
+const obdcode = carsxe.obdcodesdecoder({ code: 'P0115' });
 ```
 
 In these examples, each endpoint method is called with the necessary parameters, and the results are returned through a callback function. The callback function receives two arguments: an error object (if an error occurred) and the data returned by the endpoint. The data can then be used in your code as needed.

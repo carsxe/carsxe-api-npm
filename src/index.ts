@@ -1,4 +1,4 @@
-import { PlateDecoderParams, VinInput } from './types';
+import { ImageInput, ObdcodesdecoderInput, PlateDecoderParams, VinInput } from './types';
 
 import fetch from 'node-fetch';
 
@@ -44,6 +44,50 @@ export class CarsXE {
       url += `&country=${country}`;
     }
     const response = await fetch(url);
+    return response.json();
+  }
+
+  public async images({
+    make,
+    model,
+    year,
+    trim,
+    color,
+    transparent = true,
+    angle,
+    photoType,
+    size,
+    license,
+  }: ImageInput) {
+    // make a GET request to the /images endpoint with the make, model, year, trim, color, transparent, angle, photoType, size, and license
+    let url = `${this.getApiBaseUrl()}/images?make=${make}&model=${model}&transparent=${transparent}&key=${this.getApiKey()}`;
+    if (year) {
+      url += `&year=${year}`;
+    }
+    if (trim) {
+      url += `&trim=${trim}`;
+    }
+    if (color) {
+      url += `&color=${color}`;
+    }
+    if (angle) {
+      url += `&angle=${angle}`;
+    }
+    if (photoType) {
+      url += `&photoType=${photoType}`;
+    }
+    if (size) {
+      url += `&size=${size}`;
+    }
+    if (license) {
+      url += `&license=${license}`;
+    }
+    const response = await fetch(url);
+    return response.json();
+  }
+
+  public async obdcodesdecoder({ code }: ObdcodesdecoderInput) {
+    const response = await fetch(`${this.getApiBaseUrl()}/obdcodesdecoder?code=${code}&key=${this.getApiKey()}`);
     return response.json();
   }
 }
