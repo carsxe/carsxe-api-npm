@@ -1,6 +1,6 @@
 import { PlateDecoderParams, VinInput } from './types';
 
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 export const Greeter = (name: string) => `CarsXE API says hello ${name}!`;
 
