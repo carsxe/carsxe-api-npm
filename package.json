@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/idarwishman/carsxe-api-npm.git"
+    "url": "git+https://github.com/carsxe/carsxe-api-npm"
   },
   "keywords": [
     "Vehicle data",
@@ -38,7 +38,7 @@
   "bugs": {
     "url": "https://github.com/idarwishman/carsxe-api-npm/issues"
   },
-  "homepage": "https://github.com/idarwishman/carsxe-api-npm#readme",
+  "homepage": "https://api.carsxe.com",
   "devDependencies": {
     "@types/jest": "^29.2.4",
     "@types/node-fetch": "^2.6.2",
