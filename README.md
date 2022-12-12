@@ -1,5 +1,10 @@
 # CarsXE API
 
+[![Version](https://img.shields.io/npm/v/carsxe-api.svg)](https://www.npmjs.org/package/carsxe-api)
+[![Downloads](https://img.shields.io/npm/dm/carsxe-api.svg)](https://www.npmjs.com/package/carsxe-api)
+[![Minified Size](https://img.shields.io/bundlephobia/minzip/carsxe-api)](https://img.shields.io/bundlephobia/minzip/carsxe-api)
+[![Try on RunKit](https://badge.runkitcdn.com/carsxe-api.svg)](https://runkit.com/npm/carsxe-api)
+
 CarsXE is a powerful, easy-to-use API that gives you instant access to a wide range of vehicle data, including specs, market value, license plate decoding, and more. Our API is designed to be fast, flexible, and scalable, so you can quickly and easily integrate it into your existing applications and services. With CarsXE, you can get the information you need, when you need it, and take your business to the next level.
 
 ## Get Started
