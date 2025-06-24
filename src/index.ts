@@ -1,94 +1,84 @@
-import { ImageInput, ObdcodesdecoderInput, PlateDecoderParams, VinInput } from './types';
-
 import fetch from 'node-fetch';
+import {
+  VinInput,
+  PlateDecoderParams,
+  ImageInput,
+  ObdcodesdecoderInput
+} from './types';
 
 export const Greeter = (name: string) => `CarsXE API says hello ${name}!`;
 
-// create class CarsXE to handle all the API calls
 export class CarsXE {
-  // create constructor to set the API key and version
   constructor(private apiKey: string) {}
 
-  // create method to get the API key
-  private getApiKey() {
-    return this.apiKey;
-  }
-
-  // create method to get the API base URL
-  private getApiBaseUrl() {
+  private getBaseUrl() {
     return 'https://api.carsxe.com';
   }
 
+  private buildUrl(endpoint: string, params: Record<string, any>) {
+    const url = new URL(`${this.getBaseUrl()}/${endpoint}`);
+    url.searchParams.append('key', this.apiKey);
+    for (const [key, value] of Object.entries(params)) {
+      if (value !== undefined) {
+        url.searchParams.append(key, value);
+      }
+    }
+    return url.toString();
+  }
+
   public async specs({ vin }: VinInput) {
-    // make a GET request to the /specs endpoint with the VIN
-    const response = await fetch(`${this.getApiBaseUrl()}/specs?vin=${vin}&key=${this.getApiKey()}`);
-    return response.json();
+    const res = await fetch(this.buildUrl('specs', { vin }));
+    return res.json();
   }
 
   public async marketvalue({ vin }: VinInput) {
-    // make a GET request to the /marketvalue endpoint with the VIN
-    const response = await fetch(`${this.getApiBaseUrl()}/marketvalue?vin=${vin}&key=${this.getApiKey()}`);
-    return response.json();
+    const res = await fetch(this.buildUrl('marketvalue', { vin }));
+    return res.json();
   }
 
   public async history({ vin }: VinInput) {
-    // make a GET request to the /history endpoint with the VIN
-    const response = await fetch(`${this.getApiBaseUrl()}/history?vin=${vin}&key=${this.getApiKey()}`);
-    return response.json();
+    const res = await fetch(this.buildUrl('history', { vin }));
+    return res.json();
+  }
+
+  public async recalls({ vin }: VinInput) {
+    const res = await fetch(this.buildUrl('recalls', { vin }));
+    return res.json();
+  }
+
+  public async internationalVinDecoder({ vin }: VinInput) {
+    const res = await fetch(this.buildUrl('internationalVinDecoder', { vin }));
+    return res.json();
   }
 
   public async platedecoder({ plate, state, country }: PlateDecoderParams) {
-    // make a GET request to the /platedecoder endpoint with the plate, state, and country
-    let url = `${this.getApiBaseUrl()}/platedecoder?plate=${plate}&state=${state}&key=${this.getApiKey()}`;
-    if (country) {
-      url += `&country=${country}`;
-    }
-    const response = await fetch(url);
-    return response.json();
+    const res = await fetch(this.buildUrl('platedecoder', { plate, state, country }));
+    return res.json();
   }
 
-  public async images({
-    make,
-    model,
-    year,
-    trim,
-    color,
-    transparent = true,
-    angle,
-    photoType,
-    size,
-    license,
-  }: ImageInput) {
-    // make a GET request to the /images endpoint with the make, model, year, trim, color, transparent, angle, photoType, size, and license
-    let url = `${this.getApiBaseUrl()}/images?make=${make}&model=${model}&transparent=${transparent}&key=${this.getApiKey()}`;
-    if (year) {
-      url += `&year=${year}`;
-    }
-    if (trim) {
-      url += `&trim=${trim}`;
-    }
-    if (color) {
-      url += `&color=${color}`;
-    }
-    if (angle) {
-      url += `&angle=${angle}`;
-    }
-    if (photoType) {
-      url += `&photoType=${photoType}`;
-    }
-    if (size) {
-      url += `&size=${size}`;
-    }
-    if (license) {
-      url += `&license=${license}`;
-    }
-    const response = await fetch(url);
-    return response.json();
+  public async plateImageRecognition({ imageUrl }: { imageUrl: string }) {
+    const res = await fetch(this.buildUrl('plate-image-recognition', { image: imageUrl }));
+    return res.json();
+  }
+
+  public async vinOcr({ imageUrl }: { imageUrl: string }) {
+    const res = await fetch(this.buildUrl('vin-ocr', { image: imageUrl }));
+    return res.json();
+  }
+
+  public async yearMakeModel({ year, make, model }: { year: string; make: string; model: string }) {
+    const res = await fetch(this.buildUrl('yearmakemodel', { year, make, model }));
+    return res.json();
+  }
+
+  public async images(input: ImageInput) {
+    const res = await fetch(this.buildUrl('images', input));
+    return res.json();
   }
 
   public async obdcodesdecoder({ code }: ObdcodesdecoderInput) {
-    const response = await fetch(`${this.getApiBaseUrl()}/obdcodesdecoder?code=${code}&key=${this.getApiKey()}`);
-    return response.json();
+    const res = await fetch(this.buildUrl('obdcodesdecoder', { code }));
+    return res.json();
   }
 }
 

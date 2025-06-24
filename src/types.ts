@@ -1,15 +1,16 @@
+// Input for VIN-based endpoints
+export type VinInput = {
+  vin: string;
+};
+
+// Input for Plate Decoder
 export type PlateDecoderParams = {
   plate: string;
   state: string;
   country?: string;
 };
 
-// vin input type
-export type VinInput = {
-  vin: string;
-};
-
-// image input type
+// Input for Vehicle Image Lookup
 export type ImageInput = {
   make: string;
   model: string;
@@ -23,7 +24,24 @@ export type ImageInput = {
   license?: 'Public' | 'Share' | 'ShareCommercially' | 'Modify' | 'ModifyCommercially';
 };
 
-// obdcodesdecoder input type
+// Input for OBD Code Decoder
 export type ObdcodesdecoderInput = {
   code: string;
+};
+
+// Input for Plate Image Recognition
+export type PlateImageRecognitionInput = {
+  imageUrl: string;
+};
+
+// Input for VIN OCR from Image
+export type VinOcrInput = {
+  imageUrl: string;
+};
+
+// Input for Year/Make/Model Search
+export type YearMakeModelInput = {
+  year: string;
+  make: string;
+  model: string;
 };
