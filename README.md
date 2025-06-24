@@ -76,7 +76,7 @@ The CarsXE API provides the following endpoint:
 
 `vinOcr` – Extract VINs from images using OCR
 
-`yearMakeModel` – Query vehicle by year/make/model
+`yearMakeModel` – Query vehicle by year, make, model and trim (optional)
 
 `obdcodesdecoder` – Decode OBD error/diagnostic codes
 
