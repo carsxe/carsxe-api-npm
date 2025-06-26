@@ -50,7 +50,7 @@ export class CarsXE {
   }
 
   public async internationalVinDecoder({ vin }: VinInput) {
-    const res = await fetch(this.buildUrl('v1/internationalVinDecoder', { vin }));
+    const res = await fetch(this.buildUrl('v1/international-vin-decoder', { vin }));
     return res.json();
   }
 
