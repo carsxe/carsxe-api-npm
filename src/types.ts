@@ -3,11 +3,18 @@ export type VinInput = {
   vin: string;
 };
 
+export type SpecsInput = {
+  vin: string;
+  deepdata?: string;
+  disableIntVINDecoding?: string;
+};
+
 // Input for Plate Decoder
 export type PlateDecoderParams = {
   plate: string;
-  state: string;
-  country?: string;
+  country: string;
+  state?: string;
+  district?: string;
 };
 
 // Input for Vehicle Image Lookup
@@ -44,4 +51,5 @@ export type YearMakeModelInput = {
   year: string;
   make: string;
   model: string;
+  trim?: string;
 };

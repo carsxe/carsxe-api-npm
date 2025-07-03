@@ -1,15 +1,19 @@
 import fetch from 'node-fetch';
 import {
   VinInput,
+  SpecsInput,
   PlateDecoderParams,
   ImageInput,
-  ObdcodesdecoderInput
+  ObdcodesdecoderInput,
+  YearMakeModelInput,
+  PlateImageRecognitionInput,
+  VinOcrInput
 } from './types';
 
 export const Greeter = (name: string) => `CarsXE API says hello ${name}!`;
 
 export class CarsXE {
-  constructor(private apiKey: string) {}
+  constructor(private apiKey: string) { }
 
   private getBaseUrl() {
     return 'https://api.carsxe.com';
@@ -26,13 +30,13 @@ export class CarsXE {
     return url.toString();
   }
 
-  public async specs({ vin }: VinInput) {
+  public async specs({ vin }: SpecsInput) {
     const res = await fetch(this.buildUrl('specs', { vin }));
     return res.json();
   }
 
   public async marketvalue({ vin }: VinInput) {
-    const res = await fetch(this.buildUrl('marketvalue', { vin }));
+    const res = await fetch(this.buildUrl('v2/marketvalue', { vin }));
     return res.json();
   }
 
@@ -42,32 +46,50 @@ export class CarsXE {
   }
 
   public async recalls({ vin }: VinInput) {
-    const res = await fetch(this.buildUrl('recalls', { vin }));
+    const res = await fetch(this.buildUrl('v1/recalls', { vin }));
     return res.json();
   }
 
   public async internationalVinDecoder({ vin }: VinInput) {
-    const res = await fetch(this.buildUrl('internationalVinDecoder', { vin }));
+    const res = await fetch(this.buildUrl('v1/international-vin-decoder', { vin }));
     return res.json();
   }
 
-  public async platedecoder({ plate, state, country }: PlateDecoderParams) {
-    const res = await fetch(this.buildUrl('platedecoder', { plate, state, country }));
+  public async platedecoder({ plate, country = 'US' }: PlateDecoderParams) {
+    const res = await fetch(this.buildUrl('v2/platedecoder', { plate, country }));
     return res.json();
   }
 
-  public async plateImageRecognition({ imageUrl }: { imageUrl: string }) {
-    const res = await fetch(this.buildUrl('plate-image-recognition', { image: imageUrl }));
+  public async plateImageRecognition({ imageUrl }: PlateImageRecognitionInput) {
+    const res = await fetch(`${this.getBaseUrl()}/platerecognition`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        key: this.apiKey,
+        image: imageUrl,
+      }),
+    });
     return res.json();
   }
 
-  public async vinOcr({ imageUrl }: { imageUrl: string }) {
-    const res = await fetch(this.buildUrl('vin-ocr', { image: imageUrl }));
+  public async vinOcr({ imageUrl }: VinOcrInput) {
+    const res = await fetch(`${this.getBaseUrl()}/vin-ocr`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        key: this.apiKey,
+        image: imageUrl,
+      }),
+    });
     return res.json();
   }
 
-  public async yearMakeModel({ year, make, model }: { year: string; make: string; model: string }) {
-    const res = await fetch(this.buildUrl('yearmakemodel', { year, make, model }));
+  public async yearMakeModel({ year, make, model }: YearMakeModelInput) {
+    const res = await fetch(this.buildUrl('v1/ymm', { year, make, model }));
     return res.json();
   }
 
