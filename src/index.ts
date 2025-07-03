@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import {
   VinInput,
+  SpecsInput,
   PlateDecoderParams,
   ImageInput,
   ObdcodesdecoderInput,
@@ -29,7 +30,7 @@ export class CarsXE {
     return url.toString();
   }
 
-  public async specs({ vin }: VinInput) {
+  public async specs({ vin }: SpecsInput) {
     const res = await fetch(this.buildUrl('specs', { vin }));
     return res.json();
   }
@@ -54,8 +55,8 @@ export class CarsXE {
     return res.json();
   }
 
-  public async platedecoder({ plate, state, country = 'US' }: PlateDecoderParams) {
-    const res = await fetch(this.buildUrl('v2/platedecoder', { plate, state, country }));
+  public async platedecoder({ plate, country = 'US' }: PlateDecoderParams) {
+    const res = await fetch(this.buildUrl('v2/platedecoder', { plate, country }));
     return res.json();
   }
 
@@ -87,8 +88,8 @@ export class CarsXE {
     return res.json();
   }
 
-  public async yearMakeModel({ year, make, model, trim }: YearMakeModelInput) {
-    const res = await fetch(this.buildUrl('v1/ymm', { year, make, model, trim }));
+  public async yearMakeModel({ year, make, model }: YearMakeModelInput) {
+    const res = await fetch(this.buildUrl('v1/ymm', { year, make, model }));
     return res.json();
   }
 
