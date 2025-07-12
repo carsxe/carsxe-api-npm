@@ -126,7 +126,3 @@ Overall, the CarsXE API provides a range of powerful, easy-to-use tools for acce
 We welcome contributions to the CarsXE API! If you have ideas for improvements, bug fixes, or new features, please feel free to submit a pull request or open an issue on our GitHub repository.
 PRs and issues are welcome at:
 🔗 <https://github.com/carsxe/carsxe-api-npm>
-
-## License
-
-MIT © CarsXE
