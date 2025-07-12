@@ -1,6 +1,6 @@
 {
   "name": "carsxe-api",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "CarsXE is a powerful, easy-to-use API that gives you instant access to vehicle data like specs, market value, license plate decoding, and more. It's fast, scalable, and simple to integrate into your apps and services.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
