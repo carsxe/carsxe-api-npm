@@ -2,8 +2,8 @@
 
 [![Version](https://img.shields.io/npm/v/carsxe-api.svg)](https://www.npmjs.com/package/carsxe-api)
 [![Downloads](https://img.shields.io/npm/dm/carsxe-api.svg)](https://www.npmjs.com/package/carsxe-api)
-[![Minified Size](https://img.shields.io/bundlephobia/minzip/carsxe-api)](https://bundlephobia.com/result?p=carsxe-api)
-[![Try on RunKit](https://badge.runkitcdn.com/carsxe-api.svg)](https://runkit.com/npm/carsxe-api)
+<!--[![Minified Size](https://img.shields.io/bundlephobia/minzip/carsxe-api)](https://bundlephobia.com/result?p=carsxe-api)-->
+<!--[![Try on RunKit](https://badge.runkitcdn.com/carsxe-api.svg)](https://runkit.com/npm/carsxe-api)-->
 
 **CarsXE** is a powerful and developer-friendly API that gives you instant access to a wide range of vehicle data. From VIN decoding and market value estimation to vehicle history, images, OBD code explanations, and plate recognition, CarsXE provides everything you need to build automotive applications at scale.
 
