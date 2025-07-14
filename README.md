@@ -24,7 +24,7 @@ yarn add carsxe-api
 ### Import the CarsXE API into your code using the following line
 
 ```js
-import CarsXE from 'carsxe-api';
+import { CarsXE } from 'carsxe-api';
 ```
 
 ### Use the init method to initialize the API and provide your API key
