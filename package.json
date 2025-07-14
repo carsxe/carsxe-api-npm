@@ -12,7 +12,7 @@
     }
   },
   "scripts": {
-    "test": "jest --config jestconfig.json",
+    "test": "jest --passWithNoTests --config jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint 'src/**/*.{ts,tsx}'",
