@@ -125,10 +125,3 @@ export type OwnershipZipInput = {
   limit?: string | number;
   include?: string;
 };
-
-// Input for US Plate Decoder
-export type UsPlateDecoderInput = {
-  plate: string;
-  state: string;
-  decodeVIN?: boolean | string;
-};

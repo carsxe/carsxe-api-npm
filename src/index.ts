@@ -17,7 +17,6 @@ import {
   OwnershipPersonInput,
   OwnershipAddressInput,
   OwnershipZipInput,
-  UsPlateDecoderInput,
 } from './types';
 
 export const Greeter = (name: string) => `CarsXE API says hello ${name}!`;
@@ -111,11 +110,6 @@ export class CarsXE {
 
   public async platedecoder(params: PlateDecoderParams) {
     const res = await fetch(this.buildUrl('v2/platedecoder', { ...params }));
-    return res.json();
-  }
-
-  public async usPlateDecoder(params: UsPlateDecoderInput) {
-    const res = await fetch(this.buildUrl('v1/us-platedecoder', { ...params }));
     return res.json();
   }
 

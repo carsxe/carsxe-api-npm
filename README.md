@@ -95,8 +95,6 @@ The CarsXE API provides the following endpoint:
 
 `lienAndTheft` – Check for liens and theft records by VIN
 
-`usPlateDecoder` – Decode a US license plate (`plate`, `state`, optional `decodeVIN`)
-
 `ownershipVin` – Look up registered owner(s) by VIN (optional `include`)
 
 `ownershipPerson` – Look up a person by name and address (`first_name`, `last_name`, `address`, `zip`, optional `include`)
@@ -158,9 +156,6 @@ const obd = await carsxe.obdcodesdecoder({ code: 'P0115' });
 
 // Lien and Theft Check
 const lienTheft = await carsxe.lienAndTheft({ vin: '2C3CDXFG1FH762860' });
-
-// US Plate Decoder
-const usPlate = await carsxe.usPlateDecoder({ plate: 'H37SFS', state: 'NJ', decodeVIN: true });
 
 // Ownership (Enterprise)
 const ownerByVin = await carsxe.ownershipVin({ vin: '1FT8X3BT0BEA61538' });

@@ -112,12 +112,4 @@ describe('CarsXE new endpoints', () => {
     expect(lastUrl()).toContain('page=1');
     expect(lastUrl()).toContain('limit=15');
   });
-
-  it('usPlateDecoder GET /v1/us-platedecoder', async () => {
-    await carsxe.usPlateDecoder({ plate: 'H37SFS', state: 'NJ', decodeVIN: true });
-    expect(lastUrl()).toContain('/v1/us-platedecoder');
-    expect(lastUrl()).toContain('plate=H37SFS');
-    expect(lastUrl()).toContain('state=NJ');
-    expect(lastUrl()).toContain('decodeVIN=true');
-  });
 });
