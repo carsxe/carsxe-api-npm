@@ -16,8 +16,8 @@
     "test": "jest --passWithNoTests --config jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "eslint 'src/**/*.{ts,tsx}'",
-    "lint:fix": "eslint 'src/**/*.{ts,tsx}' --fix",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
@@ -85,7 +85,6 @@
     "obd codes decoder api"
   ],
   "author": "CarsXE",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/carsxe/carsxe-api-npm/issues"
   },
