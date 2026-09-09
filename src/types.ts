@@ -61,3 +61,67 @@ export type YearMakeModelInput = {
   model: string;
   trim?: string;
 };
+
+// Input for Recalls by Year/Make/Model
+export type RecallsYmmInput = {
+  year: string;
+  make: string;
+  model: string;
+};
+
+// Input for Recalls Batch submit
+export type RecallsBatchSubmitInput = {
+  vins?: string[];
+  csv?: string;
+  csvUrl?: string;
+  webhookUrl?: string;
+};
+
+// Input for Recalls Batch status / results / download
+export type RecallsBatchIdInput = {
+  batchId: string;
+};
+
+// Input for Year/Make/Model Options dropdowns
+export type YmmOptionsInput = {
+  dimension?: 'years' | 'makes' | 'models' | 'trims' | 'variants';
+  year?: string;
+  make?: string;
+  model?: string;
+  trim?: string;
+};
+
+// Input for Ownership by VIN
+export type OwnershipVinInput = {
+  vin: string;
+  include?: string;
+};
+
+// Input for Ownership by person
+export type OwnershipPersonInput = {
+  first_name: string;
+  last_name: string;
+  address: string;
+  zip: string;
+  include?: string;
+};
+
+// Input for Ownership by address
+export type OwnershipAddressInput = {
+  address: string;
+  zip: string;
+  include?: string;
+  variant?: string;
+};
+
+// Input for Ownership by ZIP
+export type OwnershipZipInput = {
+  zip: string;
+  gender?: string;
+  min_age?: string | number;
+  max_age?: string | number;
+  income?: string;
+  page?: string | number;
+  limit?: string | number;
+  include?: string;
+};

@@ -73,15 +73,35 @@ The CarsXE API provides the following endpoint:
 
 `recalls` – Get safety recall data for a VIN
 
+`recallsYmm` / `recallsByYmm` – Get safety recalls by year, make, and model (no VIN required)
+
+`recallsBatchSubmit` – Submit a bulk recalls batch (`vins[]` and/or `csv` and/or `csvUrl`, optional `webhookUrl`)
+
+`recallsBatchStatus` – Check bulk recalls batch status by `batchId`
+
+`recallsBatchResults` – Fetch completed bulk recalls results as JSON by `batchId`
+
+`recallsBatchDownload` – Download completed bulk recalls results as CSV by `batchId`
+
 `plateImageRecognition` – Read & decode plates from images
 
 `vinOcr` – Extract VINs from images using OCR
 
 `yearMakeModel` – Query vehicle by year, make, model and trim (optional)
 
+`ymmOptions` – Populate year/make/model/trim/variant dropdown options (`dimension?`, `year?`, `make?`, `model?`, `trim?`)
+
 `obdcodesdecoder` – Decode OBD error/diagnostic codes
 
 `lienAndTheft` – Check for liens and theft records by VIN
+
+`ownershipVin` – Look up registered owner(s) by VIN (optional `include`)
+
+`ownershipPerson` – Look up a person by name and address (`first_name`, `last_name`, `address`, `zip`, optional `include`)
+
+`ownershipAddress` – Look up residents at an address (`address`, `zip`, optional `include`, `variant`)
+
+`ownershipZip` – Search people in a ZIP (`zip`, optional `gender`, `min_age`, `max_age`, `income`, `page`, `limit`, `include`)
 
 To use any of these endpoint methods, call the method and provide the necessary parameters, as shown in the following examples:
 
@@ -107,6 +127,18 @@ const imgs = await carsxe.images({ make: 'BMW', model: 'X5', year: '2019' });
 // Vehicle Recalls
 const recalls = await carsxe.recalls({ vin: '1C4JJXR64PW696340' });
 
+// Recalls by Year, Make & Model
+const recallsYmm = await carsxe.recallsYmm({ year: '2023', make: 'Toyota', model: 'Camry' });
+
+// Recalls Batch — submit, poll, results, CSV download
+const batch = await carsxe.recallsBatchSubmit({
+  vins: ['1HGBH41JXMN109186', '5YJSA1E26HF000001'],
+  webhookUrl: 'https://example.com/webhooks/carsxe-recalls',
+});
+const batchStatus = await carsxe.recallsBatchStatus({ batchId: batch.data.batchId });
+const batchResults = await carsxe.recallsBatchResults({ batchId: batch.data.batchId });
+const batchCsv = await carsxe.recallsBatchDownload({ batchId: batch.data.batchId });
+
 // Plate Image Recognition
 const plateImg = await carsxe.plateImageRecognition({ imageUrl: 'https://api.carsxe.com/img/apis/plate_recognition.JPG' });
 
@@ -116,11 +148,25 @@ const vinOcr = await carsxe.vinOcr({ imageUrl: 'https://user-images.githubuserco
 // Year‑Make‑Model search
 const ymm = await carsxe.yearMakeModel({ year: '2023', make: 'Toyota', model: 'Camry' });
 
+// Year/Make/Model Options (dropdowns)
+const ymmOpts = await carsxe.ymmOptions({ dimension: 'models', year: '2023', make: 'Toyota' });
+
 // OBD Code Decoder
 const obd = await carsxe.obdcodesdecoder({ code: 'P0115' });
 
 // Lien and Theft Check
 const lienTheft = await carsxe.lienAndTheft({ vin: '2C3CDXFG1FH762860' });
+
+// Ownership (Enterprise)
+const ownerByVin = await carsxe.ownershipVin({ vin: '1FT8X3BT0BEA61538' });
+const ownerByPerson = await carsxe.ownershipPerson({
+  first_name: 'John',
+  last_name: 'Sample',
+  address: '123 Example St',
+  zip: '90210',
+});
+const ownerByAddress = await carsxe.ownershipAddress({ address: '123 Example St', zip: '90210' });
+const ownerByZip = await carsxe.ownershipZip({ zip: '90210', gender: 'F', page: 1, limit: 15 });
 ```
 
 In these examples, each endpoint method is called with the necessary parameters, and the results are returned through a callback function. The callback function receives two arguments: an error object (if an error occurred) and the data returned by the endpoint. The data can then be used in your code as needed.
