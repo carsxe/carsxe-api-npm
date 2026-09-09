@@ -1,7 +1,10 @@
+jest.mock('node-fetch', () => ({
+  __esModule: true,
+  default: jest.fn(),
+}));
+
 import fetch from 'node-fetch';
 import CarsXE from '../index';
-
-jest.mock('node-fetch', () => jest.fn());
 
 const mockedFetch = fetch as unknown as jest.Mock;
 
